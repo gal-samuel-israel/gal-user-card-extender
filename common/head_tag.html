@@ -5,8 +5,6 @@
     https://github.com/Mittineague/discourse-plugin-outlet-locations/tree/master/assets/javascripts/discourse/templates/connectors
     */
 
-    var additionalTitle;
-
     api.registerConnectorClass('user-card-post-names', 'user-card-customization', {
         setupComponent(args, component) {
             console.log(args);
@@ -21,15 +19,22 @@
             };
             */
 
-            additionalTitle = 'XXX';
+            component.set("additionalTitle", "XXX");
         }
     });
 
+    api.modifyClass('model:user', {
+        isEmployee: ((args)=>{
+            console.log('model:user isEmployee');
+            console.log(args);
+            return Ember.Object.create({ "<div>OBJ</div>", name: "obj name" });
+        })
+    });
 </script>
 
 
 <script type='text/x-handlebars' data-template-name='/connectors/user-card-post-names/user-card-customization'>
-    {{#if this.additionalTitle}}
-        <div>{{this.additionalTitle}}</div>
+    {{#if isEmployee}}
+        <div>{{additionalTitle}}</div>
     {{/if}}
 </script>
