@@ -22,19 +22,12 @@
             component.set("additionalTitle", "XXX");
         }
     });
-
-    api.modifyClass('model:user', {
-        isEmployee: function(args){
-            console.log('model:user isEmployee');
-            console.log(args);
-            return Ember.Object.create({ "<div>OBJ</div>", name: "obj name" });
-        }),
-    });
+    
 </script>
 
 
 <script type='text/x-handlebars' data-template-name='/connectors/user-card-post-names/user-card-customization'>
-    {{#if isEmployee}}
+    {{#if additionalTitle}}
         <div>{{additionalTitle}}</div>
     {{/if}}
 </script>
