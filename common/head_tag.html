@@ -6,15 +6,15 @@
     */
 
     function calcTitleAddendum(args, component){
-            console.log(args);
-            console.log(component.get('model.username'));
+            //console.log(args);
+            //console.log(component);
             //console.log(args.user.username);
 
-            var userName = (args?.user?.username) ? args.user.username : component.get('model.username');
+            var userName = (args?.user?.username !=='undefined') ? args.user.username : component.get('model.username');
 
             jQuery.ajax({                
                 method : 'GET',
-                url : '/u/'+args.user.username+'.json',
+                url : '/u/'+userName+'.json',
                 success: function(result){
                     //console.log(result);
                     var userGroups = result.user.groups;
