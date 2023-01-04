@@ -5,33 +5,33 @@
     https://github.com/Mittineague/discourse-plugin-outlet-locations/tree/master/assets/javascripts/discourse/templates/connectors
     */
 
+    var additionalTitle;
+
     api.registerConnectorClass('user-card-post-names', 'user-card-customization', {
         setupComponent(args, component) {
             console.log(args);
             //console.log(component);
 
-            ajax(`/u/${args.user.username}.json`)
+            ajax('/u/'+args.user.username+'.json')
             .then((data) => {                   
                 console.log('got user info:');
-                console.log(data);        
-                
+                console.log(data);                        
             }).catch(e){
                 console.log(e);
             };
 
-            this.additionalTitle = 'XXX';
+            additionalTitle = 'XXX';
         }
-    })
-
+    });
 
     api.modifyClass('component:user-card-contents', {
       hasLocationOrWebsite: true
-    })
+    });
 </script>
 
 
 <script type='text/x-handlebars' data-template-name='/connectors/user-card-post-names/user-card-customization'>
     {{#if additionalTitle}}
         <div>{{additionalTitle}}</div>
-        {{/if}}
+    {{/if}}
 </script>
