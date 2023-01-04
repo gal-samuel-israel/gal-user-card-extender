@@ -24,11 +24,11 @@
     });
 
     api.modifyClass('model:user', {
-        isEmployee: ((args)=>{
+        isEmployee: function(args){
             console.log('model:user isEmployee');
             console.log(args);
             return Ember.Object.create({ "<div>OBJ</div>", name: "obj name" });
-        })
+        }),
     });
 </script>
 
