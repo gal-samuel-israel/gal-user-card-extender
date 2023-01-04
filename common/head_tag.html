@@ -6,7 +6,7 @@
     */
 
     function calcTitleAddendum(args, component){
-        console.log(args);
+            //console.log(args);
             //console.log(component);
             //console.log(args.user.username);
                         
@@ -14,7 +14,7 @@
                 method : 'GET',
                 url : '/u/'+args.user.username+'.json',
                 success: function(result){
-                    console.log(result);
+                    //console.log(result);
                     var userGroups = result.user.groups;
                     var userTitle = result.user.title;
 
@@ -42,16 +42,16 @@
         }
     });
 
-    api.registerConnectorClass('user-profile-names', 'user-card-customization', {
+    api.registerConnectorClass('user-post-names', 'user-card-customization', {
         setupComponent(args, component) {
+            console.log(args);
             calcTitleAddendum(args, component);            
         }
     });
-
     
 </script>
 
-<script type='text/x-handlebars' data-template-name='/connectors/user-profile-names/user-card-customization'>
+<script type='text/x-handlebars' data-template-name='/connectors/user-post-names/user-card-customization'>
     {{#if additionalTitle}}
         <div>{{additionalTitle}}</div>
     {{/if}}
