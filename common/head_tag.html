@@ -1,0 +1,32 @@
+<script type="text/discourse-plugin" version="0.8.7">
+
+    /*
+    https://github.com/Mittineague/discourse-plugin-outlet-locations/tree/master/assets/javascripts/discourse/templates/connectors
+    */
+    api.registerConnectorClass('user-post-names', 'user-card-profile-customization', {
+        setupComponent(args, component) {
+            console.log(args);
+            console.log(component);
+        }
+    })
+
+    api.registerConnectorClass('user-card-post-names', 'user-card-customization', {
+        setupComponent(args, component) {
+            console.log(args);
+            console.log(component);
+        }
+    })
+
+
+    api.modifyClass('component:user-card-contents', {
+      hasLocationOrWebsite: true
+    })
+</script>
+
+<script type='text/x-handlebars' data-template-name='/connectors/user-post-names/user-card-customization'>
+    <div>Post Names</div>
+</script>
+
+<script type='text/x-handlebars' data-template-name='/connectors/user-card-post-names/user-card-customization'>
+    <div>Card Post Names</div>
+</script>
