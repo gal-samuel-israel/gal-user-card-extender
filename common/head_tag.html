@@ -20,7 +20,7 @@
                 console.log(e);
             };
             */
-            
+
             additionalTitle = 'XXX';
         }
     });
@@ -29,7 +29,7 @@
 
 
 <script type='text/x-handlebars' data-template-name='/connectors/user-card-post-names/user-card-customization'>
-    {{#if additionalTitle}}
-        <div>{{additionalTitle}}</div>
+    {{#if this.additionalTitle}}
+        <div>{{this.additionalTitle}}</div>
     {{/if}}
 </script>
