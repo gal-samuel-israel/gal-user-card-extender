@@ -12,8 +12,7 @@
             console.log(args);
             //console.log(component);
 
-            ajax('/u/'+args.user.username+'.json')
-            .then((data) => {                   
+            $ajax('/u/'+args.user.username+'.json').then((data) => {                   
                 console.log('got user info:');
                 console.log(data);                        
             }).catch(e){
