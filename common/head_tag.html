@@ -11,10 +11,19 @@
             //console.log(component);
             console.log(args.user.username);
             
+            /*
             ajax('/u/'+args.user.username+'.json').then( data => {                   
                 console.log(data);                        
             });
-            
+            */
+
+            jQuery.ajax({                
+                method : 'GET',
+                url : '/u/'+args.user.username+'.json',
+                success: function(result){
+                    console.log(result);
+                },
+             });
 
             component.set("additionalTitle", "XXX");
         }
