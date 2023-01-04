@@ -11,14 +11,10 @@
             //console.log(component);
             console.log(args.user.username);
             
-            /*
-            ajax('/u/'+args.user.username+'.json').then((data) => {                   
-                console.log('got user info:');
+            ajax('/u/'+args.user.username+'.json').then( data => {                   
                 console.log(data);                        
-            }).catch(e){
-                console.log(e);
-            };
-            */
+            });
+            
 
             component.set("additionalTitle", "XXX");
         }
