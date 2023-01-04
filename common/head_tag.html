@@ -10,7 +10,7 @@
             //console.log(component);
             //console.log(args.user.username);
 
-            var userName = (args.user.username!=='undefined') ? args.user.username : args.model.e.username;
+            var userName = (args?.user?.username) ? args.user.username : args.model.username;
             jQuery.ajax({                
                 method : 'GET',
                 url : '/u/'+args.user.username+'.json',
