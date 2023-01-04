@@ -22,10 +22,26 @@
                 url : '/u/'+args.user.username+'.json',
                 success: function(result){
                     console.log(result);
+                    var userGroups = result.user.groups;
+                    var userTitle = result.user.title;
+
+                    var isEmployee = false;
+
+                    if(userGroups?.length > 2){
+                    isEmployee = arrGroups.some((item)=>{
+                        return item.name === 'Algosec' || item.name === 'staff' ;
+                    });         
+                    }
+
+                    var calcTitle = userTitle;
+                    if(isEmployee){
+                        calcTitle = (calcTitle==='undefined' || calcTitle==='' || calcTitle===null) ? 'AlgoSec Employee' : calcTitle + ', AlgoSec';
+                    }
+
+                    component.set("additionalTitle", calcTitle);
                 },
              });
-
-            component.set("additionalTitle", "XXX");
+            
         }
     });
     
