@@ -28,9 +28,9 @@
                     var isEmployee = false;
 
                     if(userGroups?.length > 2){
-                    isEmployee = arrGroups.some((item)=>{
-                        return item.name === 'Algosec' || item.name === 'staff' ;
-                    });         
+                        isEmployee = userGroups.some((item)=>{
+                            return item.name === 'Algosec' || item.name === 'staff' ;
+                        });         
                     }
 
                     var calcTitle = userTitle;
