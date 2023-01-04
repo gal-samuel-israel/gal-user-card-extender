@@ -9,14 +9,16 @@
         setupComponent(args, component) {
             console.log(args);
             //console.log(component);
-
+            console.log(args.user.username);
+            
+            /*
             ajax('/u/'+args.user.username+'.json').then((data) => {                   
                 console.log('got user info:');
                 console.log(data);                        
             }).catch(e){
                 console.log(e);
             };
-            
+            */
 
             component.set("additionalTitle", "XXX");
         }
