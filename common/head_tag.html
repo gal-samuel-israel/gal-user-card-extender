@@ -6,11 +6,11 @@
     */
 
     function calcTitleAddendum(args, component){
-            //console.log(args);
+            console.log(args);
             //console.log(component);
             //console.log(args.user.username);
 
-            var userName = (args.user.username!=='undefined') ? args.user.username : args.model.username
+            var userName = (args.user.username!=='undefined') ? args.user.username : args.model.e.username;
             jQuery.ajax({                
                 method : 'GET',
                 url : '/u/'+args.user.username+'.json',
