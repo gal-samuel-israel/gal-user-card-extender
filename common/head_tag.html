@@ -12,7 +12,7 @@
         var debugForAll = settings.enable_debug_for_all;
         var currentUser = component.currentUser;
 
-        var userName = (args.model ==="undefined") ? args.user.username : component.get('model.username');
+        var userName = (args.model === undefined) ? args.user.username : component.get('model.username');
 
         var debug = (currentUser.admin && debugForAdmins) ? true : (!currentUser.admin && debugForAll) ? true : false;
         if(debug){
@@ -25,7 +25,7 @@
             console.log('card userName:', userName);
         }
 
-        if(userName !== "undefined"){
+        if(userName !== undefined){
             jQuery.ajax({                
                 method : 'GET',
                 url : '/u/'+userName+'.json',
@@ -43,7 +43,7 @@
 
                     var calcTitle = userTitle;
                     if(isEmployee){
-                        calcTitle = (calcTitle==="undefined" || calcTitle==="" || calcTitle===null) ? 'AlgoSec Employee' : 'AlgoSec';
+                        calcTitle = (calcTitle===undefined || calcTitle==="" || calcTitle===null) ? 'AlgoSec Employee' : 'AlgoSec';
                     }
 
                     component.set("additionalTitle", calcTitle);
