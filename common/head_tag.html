@@ -22,7 +22,7 @@
             console.log('currentUser:', currentUser);
             console.log('args:', args);
             console.log('component:', component);
-            console.log('car userName:', userName);
+            console.log('card userName:', userName);
         }
 
         if(userName !== 'undefined'){
@@ -33,7 +33,6 @@
                     //console.log(result);
                     var userGroups = result.user.groups;
                     var userTitle = result.user.title;
-
                     var isEmployee = false;
 
                     if(userGroups?.length > 2){
@@ -48,6 +47,13 @@
                     }
 
                     component.set("additionalTitle", calcTitle);
+
+                    if(debug){
+                        console.log('userGroups: ', userGroups);
+                        console.log('userTitle: ', userTitle);
+                        console.log('isEmployee: ', isEmployee);
+                        console.log('calcTitle: ', calcTitle);
+                    }
                 },
             });
         }
