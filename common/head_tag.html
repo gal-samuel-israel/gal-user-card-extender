@@ -81,7 +81,7 @@
     //override part of https://github.com/discourse/discourse/blob/main/app/assets/javascripts/discourse/app/widgets/post.js
     api.reopenWidget("post", {
         
-        avatarFor = function (wanted, attrs, linkAttrs) {
+        avatarFor(wanted, attrs, linkAttrs) {
             console.log('overridden');
             const attributes = {
               "href": attrs.url,
