@@ -81,7 +81,7 @@
     //override part of https://github.com/discourse/discourse/blob/main/app/assets/javascripts/discourse/app/widgets/post.js
     api.reopenWidget("post", {
         
-        function avatarFor(wanted, attrs, linkAttrs) {
+        avatarFor = function (wanted, attrs, linkAttrs) {
             console.log('overridden');
             const attributes = {
               href: attrs.url,
@@ -99,7 +99,7 @@
               },
               avatarImg(wanted, attrs)
             );
-        }
+        };
 
     });
 </script>
