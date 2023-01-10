@@ -76,32 +76,6 @@
             calcTitleAddendum(args, component);            
         }
     });
-    
-
-    //override part of https://github.com/discourse/discourse/blob/main/app/assets/javascripts/discourse/app/widgets/post.js
-    api.reopenWidget("embedded-post", {
-        
-        html(attrs, state) {
-            console.log('well?');
-            attrs.embeddedPost = true;
-            return [
-              h("div.row", [
-                this.attach("post-avatar", attrs),
-                h("div.topic-body", [
-                  h("div.topic-meta-data.embedded-reply", [
-                    this.attach("poster-name", attrs),
-                    this.attach("post-link-arrow", {
-                      above: state.above,
-                      shareUrl: attrs.customShare,
-                    }),
-                  ]),
-                  new PostCooked(attrs, new DecoratorHelper(this), this.currentUser),
-                ]),
-              ]),
-            ];
-          },
-
-    });
 
 </script>
 
