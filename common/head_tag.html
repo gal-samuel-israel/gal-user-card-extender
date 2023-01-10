@@ -84,7 +84,7 @@
         avatarFor = function (wanted, attrs, linkAttrs) {
             console.log('overridden');
             const attributes = {
-              href: attrs.url,
+              "href": attrs.url,
               "data-user-card": attrs.username,
               "aria-hidden": true,
             };
@@ -94,7 +94,7 @@
             return h(
               "a",
               {
-                className: `trigger-user-card ${attrs.className || ""}`,
+                "className": `trigger-user-card ${attrs.className || ""}`,
                 attributes,
               },
               avatarImg(wanted, attrs)
