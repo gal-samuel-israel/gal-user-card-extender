@@ -79,27 +79,27 @@
     
 
     //override part of https://github.com/discourse/discourse/blob/main/app/assets/javascripts/discourse/app/widgets/post.js
-    api.reopenWidget("post", {
+    api.reopenWidget("embedded-post", {
         
-        "avatarFor": function (wanted, attrs, linkAttrs) {
-            console.log('overridden');
-            const attributes = {
-              "href": attrs.url,
-              "data-user-card": attrs.username,
-              "aria-hidden": true,
-            };
-            if (linkAttrs) {
-              Object.assign(attributes, linkAttrs);
-            }
-            return h(
-              "a",
-              {
-                "className": `trigger-user-card ${attrs.className || ""}`,
-                attributes,
-              },
-              avatarImg(wanted, attrs)
-            );
-        },
+        html(attrs, state) {
+            console.log('well?');
+            attrs.embeddedPost = true;
+            return [
+              h("div.row", [
+                this.attach("post-avatar", attrs),
+                h("div.topic-body", [
+                  h("div.topic-meta-data.embedded-reply", [
+                    this.attach("poster-name", attrs),
+                    this.attach("post-link-arrow", {
+                      above: state.above,
+                      shareUrl: attrs.customShare,
+                    }),
+                  ]),
+                  new PostCooked(attrs, new DecoratorHelper(this), this.currentUser),
+                ]),
+              ]),
+            ];
+          },
 
     });
 
