@@ -27,7 +27,7 @@ export default Component.extend({
             const model = arguments[0].attrs.outletArgs.value.model;
             modelUserName = model.username         
             console.log(model);
-            
+            /*
             //console.log(result);
             var userGroups = model.groups;
             var userTitle = model.title;
@@ -53,7 +53,7 @@ export default Component.extend({
                 console.log('isEmployee: ', isEmployee);
                 console.log('calcTitle: ', calcTitle);
             } 
-
+            */
 
         }
 
