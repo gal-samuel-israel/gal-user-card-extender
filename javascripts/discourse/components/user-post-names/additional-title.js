@@ -38,14 +38,10 @@ export default Component.extend({
             return false;
         }
         
-        if(modelUserName !== undefined){
-          jQuery.ajax({                
-              method : 'GET',
-              url : '/u/'+modelUserName+'.json',
-              success: function(result){
+        
                   //console.log(result);
-                  var userGroups = result.user.groups;
-                  var userTitle = result.user.title;
+                  var userGroups = model.groups;
+                  var userTitle = model.title;
                   var isEmployee = false;
 
                   if(userGroups?.length > 2){
@@ -68,8 +64,7 @@ export default Component.extend({
                       console.log('isEmployee: ', isEmployee);
                       console.log('calcTitle: ', calcTitle);
                   }
-              },
-          });
+             
          
       }
       
