@@ -1,11 +1,9 @@
 import Component from "@ember/component";
 import { inject as service } from "@ember/service";
 import User from "discourse/models/user";
-export default Component.extend({
-    router: service(),      
-    siteSettings: service(),
+export default Component.extend({      
     destroying: false,
-    additionalTitle: null,
+    additionalTitle: false,
     init() {
         this._super(...arguments);
         console.log('additionalTitle');
@@ -35,7 +33,7 @@ export default Component.extend({
             this.destroy();
             return false;
         }
-
+        /*
         if(userName !== undefined){
           jQuery.ajax({                
               method : 'GET',
@@ -67,8 +65,9 @@ export default Component.extend({
                   }
               },
           });
+         
       }
-
+      */
 
     },
 
