@@ -21,12 +21,12 @@ export default Component.extend({
         if(debugForIDs && debugForIDs.includes(this.currentUser.id.toString())) { this.debug = true; }
         if(this.debug4All){ this.debug = true; }
 
+        let modelUserName
         if(this.debug){
             console.log('component init start');
             const model = arguments[0].attrs.outletArgs.value.model;
-            const model1 = arguments.model;
-            console.log(model);
-            console.log(model1);
+            modelUserName = model.username         
+            console.log(model);            
         }
 
         if(!this.currentUser || (!this.currentUser?.admin && this.showOnlyToAdmins)){
@@ -37,8 +37,8 @@ export default Component.extend({
             this.destroy();
             return false;
         }
-        /*
-        if(userName !== undefined){
+        
+        if(modelUserName !== undefined){
           jQuery.ajax({                
               method : 'GET',
               url : '/u/'+userName+'.json',
@@ -71,7 +71,7 @@ export default Component.extend({
           });
          
       }
-      */
+      
 
     },
 
