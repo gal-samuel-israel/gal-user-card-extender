@@ -1,5 +1,5 @@
 import { apiInitializer } from "discourse/lib/api";
-import additionalTitle from "../components/additional-title";
+import additionalTitle from "../components/user-post-names/additional-title";
 
 export default apiInitializer("1.6", (api) => {
     const outlet1 = 'user-post-names'; //'user-card-post-names';
