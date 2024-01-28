@@ -24,6 +24,8 @@ export default Component.extend({
     
         if(this.debug){
             console.log('component init start');
+            console.log(arguments[0]);
+            
             const model = arguments[0].attrs.outletArgs.value.model;       
             console.log(model);
 
