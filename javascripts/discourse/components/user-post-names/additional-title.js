@@ -21,11 +21,11 @@ export default Component.extend({
         if(debugForIDs && debugForIDs.includes(this.currentUser.id.toString())) { this.debug = true; }
         if(this.debug4All){ this.debug = true; }
 
-        let modelUserName
+    
         if(this.debug){
             console.log('component init start');
             const model = arguments[0].attrs.outletArgs.value.model;
-            modelUserName = model.username         
+            const modelUserName = model.username         
             console.log(model);
             /*
             //console.log(result);
