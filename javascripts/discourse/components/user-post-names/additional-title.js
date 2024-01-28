@@ -25,7 +25,7 @@ export default Component.extend({
         if(this.debug){
             console.log('component init start');
 
-            console.log(arguments[0].outletArgs);
+            console.log(arguments);
 
             console.log(arguments[0].outletArgs.user);
 
