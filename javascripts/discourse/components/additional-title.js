@@ -4,6 +4,7 @@ import User from "discourse/models/user";
 export default Component.extend({
     router: service(),      
     siteSettings: service(),
+    destroying: false,
     init() {
         this._super(...arguments);
         console.log('additionalTitle');
@@ -22,16 +23,17 @@ export default Component.extend({
         if(this.debug4All){ this.debug = true; }
 
         if(this.debug){
-            console.log('component init start:');      
+            console.log('component init start:');
+            console.log(this.currentUser);
         }
 
         if(!this.currentUser || (!this.currentUser?.admin && this.showOnlyToAdmins)){
-        if(this.debug){
-            console.log('destroy');
-        }
-        this.destroying = true;
-        this.destroy();
-        return false;
+            if(this.debug){
+                console.log('destroy');
+            }
+            this.destroying = true;
+            this.destroy();
+            return false;
         }
 
     },
