@@ -22,7 +22,8 @@ export default Component.extend({
         if(this.debug4All){ this.debug = true; }
 
         if(this.debug){
-            console.log('component init start:');            
+            console.log('component init start');
+            console.log(this.arguments);
         }
 
         if(!this.currentUser || (!this.currentUser?.admin && this.showOnlyToAdmins)){
