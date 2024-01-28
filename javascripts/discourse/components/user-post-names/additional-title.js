@@ -23,7 +23,7 @@ export default Component.extend({
 
         if(this.debug){
             console.log('component init start');
-            console.log(this.arguments);
+            console.log(arguments);
         }
 
         if(!this.currentUser || (!this.currentUser?.admin && this.showOnlyToAdmins)){
@@ -93,8 +93,8 @@ export default Component.extend({
         if(this.debug){ console.log('willRender'); }   
       },
     
-      willDestroyElement(element){
-        if(this.debug){ console.log('willDestroyElement:', element); }  
+      willDestroyElement(){
+        if(this.debug){ console.log('willDestroyElement'); }  
         //remove eventlisters here
         //element.removeEventListener("keydown", this.handleTabKeyStrokes, true);
     
