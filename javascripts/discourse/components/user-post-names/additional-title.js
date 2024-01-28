@@ -27,9 +27,10 @@ export default Component.extend({
             const model = arguments[0].attrs.outletArgs.value.model;       
             console.log(model);
 
-            const userGroups = model.groups;
+            var userGroups = model.groups;
             console.log(userGroups);
 
+            var userTitle = model.title;
             var isEmployee = false;
 
             if(userGroups?.length > 2){
@@ -39,33 +40,12 @@ export default Component.extend({
             }
 
             console.log('isEmployee: ', isEmployee);
-            /*
-            //console.log(result);
-            var userGroups = model.groups;
-            var userTitle = model.title;
-            var isEmployee = false;
-
-            if(userGroups?.length > 2){
-                isEmployee = userGroups.some((item)=>{
-                    return item.name === "Algosec" || item.name === "staff" ;
-                });         
-            }
-
             var calcTitle = userTitle;
             if(isEmployee){
                 calcTitle = (calcTitle===undefined || calcTitle==="" || calcTitle===null) ? 'AlgoSec Employee' : 'AlgoSec';
             }
 
-            //this.set("additionalTitle", calcTitle);
             this.additionalTitle = calcTitle;
-
-            if(debug){
-                console.log('userGroups: ', userGroups);
-                console.log('userTitle: ', userTitle);
-                console.log('isEmployee: ', isEmployee);
-                console.log('calcTitle: ', calcTitle);
-            } 
-            */
 
         }
 
