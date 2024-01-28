@@ -26,7 +26,35 @@ export default Component.extend({
             console.log('component init start');
             const model = arguments[0].attrs.outletArgs.value.model;
             modelUserName = model.username         
-            console.log(model);            
+            console.log(model);
+            
+            //console.log(result);
+            var userGroups = model.groups;
+            var userTitle = model.title;
+            var isEmployee = false;
+
+            if(userGroups?.length > 2){
+                isEmployee = userGroups.some((item)=>{
+                    return item.name === "Algosec" || item.name === "staff" ;
+                });         
+            }
+
+            var calcTitle = userTitle;
+            if(isEmployee){
+                calcTitle = (calcTitle===undefined || calcTitle==="" || calcTitle===null) ? 'AlgoSec Employee' : 'AlgoSec';
+            }
+
+            //this.set("additionalTitle", calcTitle);
+            this.additionalTitle = calcTitle;
+
+            if(debug){
+                console.log('userGroups: ', userGroups);
+                console.log('userTitle: ', userTitle);
+                console.log('isEmployee: ', isEmployee);
+                console.log('calcTitle: ', calcTitle);
+            } 
+
+
         }
 
         if(!this.currentUser || (!this.currentUser?.admin && this.showOnlyToAdmins)){
@@ -36,34 +64,7 @@ export default Component.extend({
             this.destroying = true;
             this.destroy();
             return false;
-        }
-        
-        
-          //console.log(result);
-          var userGroups = model.groups;
-          var userTitle = model.title;
-          var isEmployee = false;
-
-          if(userGroups?.length > 2){
-              isEmployee = userGroups.some((item)=>{
-                  return item.name === "Algosec" || item.name === "staff" ;
-              });         
-          }
-
-          var calcTitle = userTitle;
-          if(isEmployee){
-              calcTitle = (calcTitle===undefined || calcTitle==="" || calcTitle===null) ? 'AlgoSec Employee' : 'AlgoSec';
-          }
-
-          //this.set("additionalTitle", calcTitle);
-          this.additionalTitle = calcTitle;
-
-          if(debug){
-              console.log('userGroups: ', userGroups);
-              console.log('userTitle: ', userTitle);
-              console.log('isEmployee: ', isEmployee);
-              console.log('calcTitle: ', calcTitle);
-          }   
+        }                        
     },
 
     didInsertElement() {      
