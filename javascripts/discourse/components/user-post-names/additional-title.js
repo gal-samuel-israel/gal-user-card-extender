@@ -41,7 +41,7 @@ export default Component.extend({
         if(modelUserName !== undefined){
           jQuery.ajax({                
               method : 'GET',
-              url : '/u/'+userName+'.json',
+              url : '/u/'+modelUserName+'.json',
               success: function(result){
                   //console.log(result);
                   var userGroups = result.user.groups;
@@ -61,7 +61,7 @@ export default Component.extend({
 
                   //this.set("additionalTitle", calcTitle);
                   this.additionalTitle = calcTitle;
-                  
+
                   if(debug){
                       console.log('userGroups: ', userGroups);
                       console.log('userTitle: ', userTitle);
