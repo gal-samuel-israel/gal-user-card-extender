@@ -64,6 +64,15 @@
         }
     }
 
+    const customTilesComponent = function(args, component){       
+        calcTitleAddendum(args, component);                    
+    };
+    const selectedOutlet1 = 'user-card-post-names';
+    const selectedOutlet2 = 'user-post-names';
+    api.renderInOutlet(selectedOutlet1, customTilesComponent);
+    api.renderInOutlet(selectedOutlet2, customTilesComponent);
+
+    /*
     api.registerConnectorClass('user-card-post-names', 'user-card-customization', {
         setupComponent(args, component) {
             calcTitleAddendum(args, component);            
@@ -76,6 +85,7 @@
             calcTitleAddendum(args, component);            
         }
     });
+    */
 
 </script>
 
