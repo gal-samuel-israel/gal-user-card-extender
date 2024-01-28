@@ -13,8 +13,8 @@
 
     function calcTitleAddendum(args, component){
 
-        var debugForAdmins = (settings && settings.enable_debug_for_admins) || false;
-        var debugForAll = (settings && settings.enable_debug_for_all) || false;
+        var debugForAdmins = settings.enable_debug_for_admins;
+        var debugForAll = settings.enable_debug_for_all;
         var currentUser = component.currentUser;
 
         var userName = (args.model === undefined) ? args.user.username : component.get('model.username');
@@ -64,23 +64,6 @@
         }
     }
 
-    const customTilesComponent = Ember.Component.extend({
-        didInsertElement() {
-            this._super(...arguments); // Make sure to call the parent method if needed
-            this.setupComponent();
-        },
-        
-        setupComponent() {
-            // Your component logic goes here
-            calcTitleAddendum(this.args, this);
-        }
-    });
-    const selectedOutlet1 = 'user-card-post-names';
-    const selectedOutlet2 = 'user-post-names';
-    api.renderInOutlet(selectedOutlet1, customTilesComponent);
-    api.renderInOutlet(selectedOutlet2, customTilesComponent);
-
-    /*
     api.registerConnectorClass('user-card-post-names', 'user-card-customization', {
         setupComponent(args, component) {
             calcTitleAddendum(args, component);            
@@ -93,7 +76,6 @@
             calcTitleAddendum(args, component);            
         }
     });
-    */
 
 </script>
 
