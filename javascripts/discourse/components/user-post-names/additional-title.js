@@ -23,7 +23,8 @@ export default Component.extend({
 
         if(this.debug){
             console.log('component init start');
-            console.log(arguments);
+            const model = arguments[0].attrs.outletArgs.value.model;
+            console.log(model);
         }
 
         if(!this.currentUser || (!this.currentUser?.admin && this.showOnlyToAdmins)){
