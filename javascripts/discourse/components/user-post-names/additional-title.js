@@ -24,9 +24,21 @@ export default Component.extend({
     
         if(this.debug){
             console.log('component init start');
-            const model = arguments[0].attrs.outletArgs.value.model;
-            const modelUserName = model.username         
+            const model = arguments[0].attrs.outletArgs.value.model;       
             console.log(model);
+
+            const userGroups = model.groups;
+            console.log(userGroups);
+
+            var isEmployee = false;
+
+            if(userGroups?.length > 2){
+              isEmployee = userGroups.some((item)=>{
+                  return item.name === "Algosec" || item.name === "staff" ;
+              });         
+            }
+
+            console.log('isEmployee: ', isEmployee);
             /*
             //console.log(result);
             var userGroups = model.groups;
