@@ -7,7 +7,7 @@ export default {
       this.reopen({
         router: service(),
         currentUser: User.current(),
-        additionalTitle: false,
+        additionalTitle: false
       });
-    },
-};
+    }
+}
