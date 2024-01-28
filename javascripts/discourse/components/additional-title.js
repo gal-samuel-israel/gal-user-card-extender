@@ -1,11 +1,16 @@
 import Component from "@ember/component";
+import { inject as service } from "@ember/service";
 import User from "discourse/models/user";
 
-export default {
-    currentUser: User.current(),
-    additionalTitle: false,
-    calcTitleAddendum: function(args, Component) {
-        
+export default class additionalTitle extends Component{
+    @service site;
+
+    currentUser = User.current();
+    additionalTitle =  false;
+
+    constructor(){
+        super(...arguments);
+
         var debugForAdmins = settings.enable_debug_for_admins;
         var debugForAll = settings.enable_debug_for_all;
         var currentUser = this.currentUser;
@@ -53,9 +58,10 @@ export default {
                 },
             });
         }*/
-    },
-    setupComponent(args, Component) {
-        this.calcTitleAddendum(args, Component);
-        return true
+
+    }
+    
+    willDestroy() {
+        this.additionalTitle = null;
     }
 }
