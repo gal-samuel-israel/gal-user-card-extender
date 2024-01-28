@@ -6,12 +6,7 @@ export default Component.extend({
     session: service(),    
     destroying: false,
     additionalTitle: false,
-
-    selectedUser: computed('arguments', function() {
-      const user = this.get('arguments[0].outletArgs.user');
-      const model = this.get('arguments[0].attrs.outletArgs.value.model');
-      return user || model;
-    }),
+    
     init() {
         this._super(...arguments);
         console.log('additionalTitle');
@@ -33,11 +28,20 @@ export default Component.extend({
         if(this.debug){
             console.log('component init start');
 
-            console.log(this.selectedUser);
-            const model = this.selectedUser;
+            console.log(arguments);
+
+            const tryUser = arguments[0].outletArgs.user;
+
+            const tryModel = arguments[0].attrs.outletArgs.value.model;       
             
-            var userGroups = model.groups;
-            console.log(userGroups);
+            var userGroups;
+            if(tryUser){
+              userGroups = tryUser.groups;
+            } else if(tryModel){
+              userGroups = tryModel.groups;
+            }
+            
+            console.log('userGroups:', userGroups);
 
             var userTitle = model.title;
             var isEmployee = false;
