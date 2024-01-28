@@ -1,9 +1,17 @@
 import Component from "@ember/component";
 import { inject as service } from "@ember/service";
+import { computed } from '@ember/object';
 import User from "discourse/models/user";
-export default Component.extend({      
+export default Component.extend({
+    session: service(),    
     destroying: false,
     additionalTitle: false,
+
+    selectedUser: computed('arguments', function() {
+      const user = this.get('arguments[0].outletArgs.user');
+      const model = this.get('arguments[0].attrs.outletArgs.value.model');
+      return user || model;
+    }),
     init() {
         this._super(...arguments);
         console.log('additionalTitle');
@@ -25,13 +33,9 @@ export default Component.extend({
         if(this.debug){
             console.log('component init start');
 
-            console.log(arguments);
-
-            console.log(arguments[0].outletArgs.user);
-
-            const model = arguments[0].attrs.outletArgs.value.model;       
-            console.log(model);
-
+            console.log(this.selectedUser);
+            const model = this.selectedUser;
+            
             var userGroups = model.groups;
             console.log(userGroups);
 
