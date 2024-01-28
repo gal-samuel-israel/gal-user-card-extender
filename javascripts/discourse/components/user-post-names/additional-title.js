@@ -5,6 +5,7 @@ export default Component.extend({
     router: service(),      
     siteSettings: service(),
     destroying: false,
+    additionalTitle: null,
     init() {
         this._super(...arguments);
         console.log('additionalTitle');
@@ -24,7 +25,7 @@ export default Component.extend({
 
         if(this.debug){
             console.log('component init start:');
-            console.log(this.currentUser);
+            console.log(arguments);
         }
 
         if(!this.currentUser || (!this.currentUser?.admin && this.showOnlyToAdmins)){
@@ -35,6 +36,40 @@ export default Component.extend({
             this.destroy();
             return false;
         }
+
+        if(userName !== undefined){
+          jQuery.ajax({                
+              method : 'GET',
+              url : '/u/'+userName+'.json',
+              success: function(result){
+                  //console.log(result);
+                  var userGroups = result.user.groups;
+                  var userTitle = result.user.title;
+                  var isEmployee = false;
+
+                  if(userGroups?.length > 2){
+                      isEmployee = userGroups.some((item)=>{
+                          return item.name === "Algosec" || item.name === "staff" ;
+                      });         
+                  }
+
+                  var calcTitle = userTitle;
+                  if(isEmployee){
+                      calcTitle = (calcTitle===undefined || calcTitle==="" || calcTitle===null) ? 'AlgoSec Employee' : 'AlgoSec';
+                  }
+
+                  this.set("additionalTitle", calcTitle);
+
+                  if(debug){
+                      console.log('userGroups: ', userGroups);
+                      console.log('userTitle: ', userTitle);
+                      console.log('isEmployee: ', isEmployee);
+                      console.log('calcTitle: ', calcTitle);
+                  }
+              },
+          });
+      }
+
 
     },
 
