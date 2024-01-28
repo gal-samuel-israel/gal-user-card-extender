@@ -59,8 +59,9 @@ export default Component.extend({
                       calcTitle = (calcTitle===undefined || calcTitle==="" || calcTitle===null) ? 'AlgoSec Employee' : 'AlgoSec';
                   }
 
-                  this.set("additionalTitle", calcTitle);
-
+                  //this.set("additionalTitle", calcTitle);
+                  this.additionalTitle = calcTitle;
+                  
                   if(debug){
                       console.log('userGroups: ', userGroups);
                       console.log('userTitle: ', userTitle);
