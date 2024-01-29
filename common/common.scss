@@ -1,21 +1,11 @@
 #user-card {
-  .card-content {
-      padding-top: 31px;
-  }
-  .usercard-controls {
-      margin-top: -19px;
-  }
-  &.no-bg .card-content {
-      padding-top: 12px;
-      margin-top: 19px;
-  }
-  
+  .card-content { padding-top: 31px;}
+  .usercard-controls { margin-top: -19px;}
+  &.no-bg .card-content { padding-top: 12px; margin-top: 19px;}
 }
-
+.user-profile-names{
+    img.community-icon { width: 1.2em; display: inline-block; margin: -3px 0 0 0; }
+}
 .user-card {
-    img.community-icon{
-        width: 1.2em;
-        display: inline-block;
-        margin: -3px 0 0 0;
-      }
+    img.community-icon { width: 1.2em; display: inline-block; margin: -3px 0 0 0; }
 }
