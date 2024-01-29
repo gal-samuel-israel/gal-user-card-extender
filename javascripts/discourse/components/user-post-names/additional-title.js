@@ -54,7 +54,7 @@ export default Component.extend({
             // Check if userGroups is missing
             if (!userGroups) {
                 // Schedule an asynchronous query
-                run.scheduleOnce('afterRender', this, this.fetchUserGroups, tryUser.username);
+                run.once('afterRender', this, this.fetchUserGroups, tryUser.username);
             } else {
                 this.handleUserGroups(userGroups, userTitle);
             }
