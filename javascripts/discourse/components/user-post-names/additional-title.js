@@ -35,15 +35,17 @@ export default Component.extend({
             const tryModel = (arguments[0]?.attrs?.outletArgs?.value?.model !== 'undefined') ? arguments[0]?.attrs?.outletArgs?.value?.model : null;       
             
             var userGroups;
+            var userTitle;
             if(tryUser){
               userGroups = tryUser.groups;
+              userTitle =  tryUser.title;
             } else if(tryModel){
               userGroups = tryModel.groups;
+              userTitle =  tryModel.title;
             }
             
             console.log('userGroups:', userGroups);
 
-            var userTitle = model.title;
             var isEmployee = false;
             /*
             if(userGroups?.length > 2){
