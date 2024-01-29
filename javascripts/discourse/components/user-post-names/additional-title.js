@@ -30,9 +30,9 @@ export default Component.extend({
 
             console.log(arguments);
 
-            const tryUser = arguments[0].outletArgs.user;
+            const tryUser = arguments[0]?.outletArgs?.user;
 
-            const tryModel = arguments[0].attrs.outletArgs.value.model;       
+            const tryModel = arguments[0]?.attrs?.outletArgs?.value?.model;       
             
             var userGroups;
             if(tryUser){
@@ -45,13 +45,13 @@ export default Component.extend({
 
             var userTitle = model.title;
             var isEmployee = false;
-
+            /*
             if(userGroups?.length > 2){
               isEmployee = userGroups.some((item)=>{
                   return item.name === "Algosec" || item.name === "staff" ;
               });         
             }
-
+            */
             console.log('isEmployee: ', isEmployee);
             var calcTitle = userTitle;
             if(isEmployee){
@@ -78,30 +78,30 @@ export default Component.extend({
         if(this.destroying){return;}
     
         if(this.debug){ console.log('didInsertElement'); } 
-      },
+    },
     
-      didRender(){
-        this._super(...arguments);
-    
-        if(this.destroying){return;}
-        
-        //visual effects should not be done here as this is run many times
-        if(this.debug){ console.log('didRender'); } 
-      },
-    
-      willRender() {
-        if(this.debug){ console.log('willRender'); }   
-      },
-    
-      willDestroyElement(){
-        if(this.debug){ console.log('willDestroyElement'); }  
-        //remove eventlisters here
-        //element.removeEventListener("keydown", this.handleTabKeyStrokes, true);
-    
-        this._super(...arguments);
-      },
-    
-      didDestroyElement() {
-        //document.documentElement.classList.remove("class-of-element-to-remove-from-dom");
-      },
+    didRender(){
+      this._super(...arguments);
+  
+      if(this.destroying){return;}
+      
+      //visual effects should not be done here as this is run many times
+      //if(this.debug){ console.log('didRender'); } 
+    },
+  
+    willRender() {
+      //if(this.debug){ console.log('willRender'); }   
+    },
+  
+    willDestroyElement(){
+      //if(this.debug){ console.log('willDestroyElement'); }  
+      //remove eventlisters here
+      //element.removeEventListener("keydown", this.handleTabKeyStrokes, true);
+  
+      this._super(...arguments);
+    },
+  
+    didDestroyElement() {
+      //document.documentElement.classList.remove("class-of-element-to-remove-from-dom");
+    },
 });
