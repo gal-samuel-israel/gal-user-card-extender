@@ -1,7 +1,10 @@
 import Component from "@ember/component";
 import { inject as service } from "@ember/service";
-import { computed } from '@ember/object';
-import User from "discourse/models/user";
+import { run } from '@ember/runloop';
+import jQuery from 'jquery';
+//import { computed } from '@ember/object';
+//import User from "discourse/models/user";
+
 export default Component.extend({
     session: service(),    
     destroying: false,
@@ -48,22 +51,13 @@ export default Component.extend({
             
             console.log('userGroups:', userGroups);
 
-            var isEmployee = false;
-            
-            if(userGroups?.length > 2){
-              isEmployee = userGroups.some((item)=>{
-                  return item.name === "Algosec" || item.name === "staff" ;
-              });         
+            // Check if userGroups is missing
+            if (!userGroups) {
+                // Schedule an asynchronous query
+                run.scheduleOnce('afterRender', this, this.fetchUserGroups, tryUser.username);
+            } else {
+                this.handleUserGroups(userGroups, userTitle);
             }
-            
-            console.log('isEmployee: ', isEmployee);
-            var calcTitle = userTitle;
-            if(isEmployee){
-                calcTitle = (calcTitle===undefined || calcTitle==="" || calcTitle===null) ? 'AlgoSec Employee' : 'AlgoSec';
-            }
-
-            this.additionalTitle = calcTitle;
-
         }
 
         if(!this.currentUser || (!this.currentUser?.admin && this.showOnlyToAdmins)){
@@ -75,7 +69,44 @@ export default Component.extend({
             return false;
         }                        
     },
+    fetchUserGroups(userName) {
+        const component = this;
+        jQuery.ajax({
+            method: 'GET',
+            url: '/u/' + userName + '.json',
+            success: function(result) {
+                const userGroups = result.user.groups;
+                const userTitle = result.user.title;
 
+                component.handleUserGroups(userGroups, userTitle);
+            },
+        });
+    },
+    handleUserGroups(userGroups, userTitle) {
+        console.log('userGroups:', userGroups);
+
+        var isEmployee = false;
+
+        if(userGroups?.length > 2){
+            isEmployee = userGroups.some((item)=>{
+                return item.name === "Algosec" || item.name === "staff";
+            });         
+        }
+
+        console.log('isEmployee: ', isEmployee);
+        var calcTitle = userTitle;
+        if(isEmployee){
+            calcTitle = (calcTitle === undefined || calcTitle === "" || calcTitle === null) ? 'AlgoSec Employee' : 'AlgoSec';
+        }
+
+        this.set("additionalTitle", calcTitle);
+
+        if(this.debug){
+            console.log('userTitle: ', userTitle);
+            console.log('isEmployee: ', isEmployee);
+            console.log('calcTitle: ', calcTitle);
+        }
+    },
     didInsertElement() {      
         this._super(...arguments);
     
