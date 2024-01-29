@@ -42,11 +42,11 @@ export default Component.extend({
         
         var userGroups;
         var userTitle;
-        if(tryUser){
+        if(tryUser){ // works in user card popups from user thumbnails
           if(this.debug){ console.log('found user'); }
           userGroups = tryUser.groups;
           userTitle =  tryUser.title;
-        } else if(tryModel){
+        } else if(tryModel){ // works in user profile page
           if(this.debug){ console.log('found model'); }
           userGroups = tryModel.groups;
           userTitle =  tryModel.title;
@@ -63,6 +63,7 @@ export default Component.extend({
         }
     },
     fetchUserGroups(userName) {
+        if(this.debug){ console.log('fetching user groups'); }
         const component = this;
         jQuery.ajax({
             method: 'GET',
@@ -70,23 +71,20 @@ export default Component.extend({
             success: function(result) {
                 const userGroups = result.user.groups;
                 const userTitle = result.user.title;
-
                 component.handleUserGroups(userGroups, userTitle);
             },
         });
     },
     handleUserGroups(userGroups, userTitle) {
-        console.log('userGroups:', userGroups);
-
+        if(this.debug){ console.log('handling userGroups:', userGroups); }
         var isEmployee = false;
-
         if(userGroups?.length > 2){
             isEmployee = userGroups.some((item)=>{
                 return item.name === "Algosec" || item.name === "staff";
             });         
         }
 
-        console.log('isEmployee: ', isEmployee);
+        if(this.debug){  console.log('isEmployee: ', isEmployee); }
         var calcTitle = userTitle;
         if(isEmployee){
             calcTitle = (calcTitle === undefined || calcTitle === "" || calcTitle === null) ? 'AlgoSec Employee' : 'AlgoSec';
