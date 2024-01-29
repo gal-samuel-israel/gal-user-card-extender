@@ -47,13 +47,13 @@ export default Component.extend({
             console.log('userGroups:', userGroups);
 
             var isEmployee = false;
-            /*
+            
             if(userGroups?.length > 2){
               isEmployee = userGroups.some((item)=>{
                   return item.name === "Algosec" || item.name === "staff" ;
               });         
             }
-            */
+            
             console.log('isEmployee: ', isEmployee);
             var calcTitle = userTitle;
             if(isEmployee){
