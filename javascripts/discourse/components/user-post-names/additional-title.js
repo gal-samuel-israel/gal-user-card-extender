@@ -11,13 +11,12 @@ export default Component.extend({
     
     init() {
         this._super(...arguments);
-        console.log('additionalTitle');
-
+        
+        // Get settings params and decide if showing to user and/or debug mode is on/off
         this.showOnlyToAdmins = settings?.enable_modal_only_for_admins; //from settings.yml
         this.debugForAdmins = settings?.enable_debug_for_admins; //from settings.yml
         this.debugFooter = this.debugForAdmins && settings?.enable_modal_footer_internal_debug; //from settings.yml
         this.debug4All = settings?.enable_debug_for_all; //from settings.yml    
-
         this.debugForUsers = settings?.enable_debug_for_user_ids; //from settings.yml
         var debugForIDs = (this.debugForUsers) ? this.debugForUsers.split("|") : null;
         
@@ -25,48 +24,43 @@ export default Component.extend({
         if(this.currentUser?.admin && this.debugForAdmins){ this.debug = true; }
         if(debugForIDs && debugForIDs.includes(this.currentUser.id.toString())) { this.debug = true; }
         if(this.debug4All){ this.debug = true; }
-
     
         if(this.debug){
             console.log('component init start');
-
             console.log(arguments);
-
-            const tryUser = (arguments[0]?.outletArgs?.user !== 'undefined') ? arguments[0]?.outletArgs?.user : null;
-
-            const tryModel = (arguments[0]?.attrs?.outletArgs?.value?.model !== 'undefined') ? arguments[0]?.attrs?.outletArgs?.value?.model : null;       
-            
-            var userGroups;
-            var userTitle;
-            if(tryUser){
-              console.log('found user');
-              userGroups = tryUser.groups;
-              userTitle =  tryUser.title;
-            } else if(tryModel){
-              console.log('found model');
-              userGroups = tryModel.groups;
-              userTitle =  tryModel.title;
-            }
-            
-            console.log('userGroups:', userGroups);
-
-            // Check if userGroups is missing
-            if (!userGroups) {
-                // Schedule an asynchronous query
-                this.fetchUserGroups(tryUser.username);
-            } else {
-                this.handleUserGroups(userGroups, userTitle);
-            }
-        }
-
+        }        
+        // Get out if component is not enabled for the user
         if(!this.currentUser || (!this.currentUser?.admin && this.showOnlyToAdmins)){
-            if(this.debug){
-                console.log('destroy');
-            }
+            if(this.debug){ console.log('destroy'); }
             this.destroying = true;
             this.destroy();
             return false;
-        }                        
+        }
+        
+        const tryUser = (arguments[0]?.outletArgs?.user !== 'undefined') ? arguments[0]?.outletArgs?.user : null;
+        const tryModel = (arguments[0]?.attrs?.outletArgs?.value?.model !== 'undefined') ? arguments[0]?.attrs?.outletArgs?.value?.model : null;       
+        
+        var userGroups;
+        var userTitle;
+        if(tryUser){
+          if(this.debug){ console.log('found user'); }
+          userGroups = tryUser.groups;
+          userTitle =  tryUser.title;
+        } else if(tryModel){
+          if(this.debug){ console.log('found model'); }
+          userGroups = tryModel.groups;
+          userTitle =  tryModel.title;
+        }
+        
+        if(this.debug){ console.log('userGroups:', userGroups); }
+
+        // Check if userGroups is missing
+        if (!userGroups) {
+            // Schedule an asynchronous query
+            this.fetchUserGroups(tryUser.username);
+        } else {
+            this.handleUserGroups(userGroups, userTitle);
+        }
     },
     fetchUserGroups(userName) {
         const component = this;
