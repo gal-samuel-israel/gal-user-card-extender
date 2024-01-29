@@ -37,9 +37,11 @@ export default Component.extend({
             var userGroups;
             var userTitle;
             if(tryUser){
+              console.log('found user');
               userGroups = tryUser.groups;
               userTitle =  tryUser.title;
             } else if(tryModel){
+              console.log('found model');
               userGroups = tryModel.groups;
               userTitle =  tryModel.title;
             }
