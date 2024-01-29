@@ -30,9 +30,9 @@ export default Component.extend({
 
             console.log(arguments);
 
-            const tryUser = arguments[0]?.outletArgs?.user;
+            const tryUser = (arguments[0]?.outletArgs?.user !== 'undefined') ? arguments[0]?.outletArgs?.user : null;
 
-            const tryModel = arguments[0]?.attrs?.outletArgs?.value?.model;       
+            const tryModel = (arguments[0]?.attrs?.outletArgs?.value?.model !== 'undefined') ? arguments[0]?.attrs?.outletArgs?.value?.model : null;       
             
             var userGroups;
             if(tryUser){
