@@ -1,6 +1,5 @@
 import Component from "@ember/component";
 import { inject as service } from "@ember/service";
-import { run } from '@ember/runloop';
 import jQuery from 'jquery';
 //import { computed } from '@ember/object';
 //import User from "discourse/models/user";
@@ -54,7 +53,7 @@ export default Component.extend({
             // Check if userGroups is missing
             if (!userGroups) {
                 // Schedule an asynchronous query
-                run.once('afterRender', this, this.fetchUserGroups, tryUser.username);
+                this.fetchUserGroups(tryUser.username);
             } else {
                 this.handleUserGroups(userGroups, userTitle);
             }
