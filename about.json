@@ -1,6 +1,7 @@
 {
   "name": "gal-user-card-extender",
   "about_url": "",
+  "authors": "Gal Samuel (webmaster@agency.co.il)",
   "license_url": "",
   "assets": {
     "img_ico_algosec_community": "assets/img/ico-algosec-community.png"
